@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OperationController {
-    @RequestMapping(value = "/versement", method = RequestMethod.GET)
+    @Autowired
+    private OperationMetier operationMetier;
+    //juste apres delegate methode
+    @RequestMapping(value = "/operations", method = RequestMethod.GET)
     public PageOperation getOperation(@RequestParam String codeCompte, @RequestParam int page, @RequestParam int size) {
         return operationMetier.getOperation(codeCompte, page, size);
     }
-
-    @Autowired
-    private OperationMetier operationMetier;
-
-    //juste apres delegate methode
 
     @RequestMapping(value = "/versement", method = RequestMethod.PUT)
     //on utilise @RequestParam comme c'estn'est pas un format json
